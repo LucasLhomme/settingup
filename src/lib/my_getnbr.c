@@ -5,7 +5,32 @@
 ** nbr
 */
 
+#include "../../include/my.h"
+
 int my_getnbr(char const *str)
 {
-    return (0);
+    int i = 0;
+    int result = 0;
+    int neg = 1;
+
+    while (str[i] == '\0' || str[i] == '\n') {
+        i++;
+    }
+    if (str[i] == '-') {
+        neg = -1;
+        i++;
+    }
+    while (str[i] >= '0' && str[i] <= '9') {
+        result = result * 10 + (str[i] - '0');
+        i++;
+    }
+    return result * neg;
+}
+
+int main(void)
+{
+    char *str = "52525"; 
+    int nbr = my_getnbr(str);
+    printf("%d\n", nbr);
+    return 0;
 }
