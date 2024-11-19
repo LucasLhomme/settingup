@@ -52,4 +52,5 @@ int flag_x(va_list list);
 void blank(va_list list);
 int flag_detector(const char *format, int i, va_list list);
 int my_getloadavg(double loadavg [] ,int nelem);
+int fs_open_file(char const *filepath, int x);
 #endif /*my.h*/

@@ -7,9 +7,9 @@
 
 pathdir=./src/lib
 
-NAME = setting_up
+NAME = settingup_lib
 
-SRC = ./src/settingup.c\
+SRC = ./src/settingup.c \
 
 LIB = $(pathdir)/my_compute_power_rec.c\
 	$(pathdir)/my_find_prime_sup.c\
@@ -57,7 +57,7 @@ all: 	$(NAME)
 
 $(NAME):	$(OBJ) $(OBJ_LIB)
 		ar rcs $(NAME) $(OBJ)  $(OBJ_LIB)
-		gcc setting_up main.c -Iinclude $(NAME)
+		gcc -o setting_up main.c -Iinclude settingup_lib
 clean:
 		rm -f $(OBJ) $(OBJ_LIB)
 
@@ -69,4 +69,4 @@ re:
 		$(MAKE) all
 debug:
 		$(MAKE) clean
-		gcc -g main.c -Iinclude $(NAME)
+		gcc -g main.c -Iinclude my_ls
