@@ -69,4 +69,4 @@ re:
 		$(MAKE) all
 debug:
 		$(MAKE) clean
-		gcc -g main.c -Iinclude my_ls
+		gcc -g main.c -Iinclude settingup_lib
