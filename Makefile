@@ -7,7 +7,9 @@
 
 pathdir=./src/lib
 
-NAME = libmy.a
+NAME = setting_up
+
+SRC = ./src/settingup.c\
 
 LIB = $(pathdir)/my_compute_power_rec.c\
 	$(pathdir)/my_find_prime_sup.c\
@@ -35,25 +37,36 @@ LIB = $(pathdir)/my_compute_power_rec.c\
 	$(pathdir)/my_strstr.c\
 	$(pathdir)/my_strupcase.c\
 	$(pathdir)/my_swap.c\
+	$(pathdir)/blanck.c\
+	$(pathdir)/flag_c.c\
+	$(pathdir)/flag_d.c\
+	$(pathdir)/flag_i.c\
+	$(pathdir)/flag_o.c\
+	$(pathdir)/flag_percent.c\
+	$(pathdir)/flag_s.c\
+	$(pathdir)/flag_x.c\
+	$(pathdir)/flag_x2.c\
+	$(pathdir)/my_printf.c
+
 
 OBJ  	=	 $(SRC:.c=.o)
 
-TEST =  $(LIB:.c=.o)
+OBJ_LIB =  $(LIB:.c=.o)
 
 all: 	$(NAME)
 
-$(NAME):	$(OBJ) $(TEST)
-		ar rcs $(NAME) $(OBJ)  $(TEST)
-
+$(NAME):	$(OBJ) $(OBJ_LIB)
+		ar rcs $(NAME) $(OBJ)  $(OBJ_LIB)
+		gcc setting_up main.c -Iinclude $(NAME)
 clean:
-		rm -f $(OBJ) $(TEST)
+		rm -f $(OBJ) $(OBJ_LIB)
 
 fclean:
-		rm -f $(NAME) $(TEST) $(OBJ)
+		rm -f $(NAME) $(OBJ_LIB) $(OBJ)
 
 re:
 		$(MAKE) fclean
 		$(MAKE) all
 debug:
 		$(MAKE) clean
-		gcc -g main.c -Iinclude libmy.a
+		gcc -g main.c -Iinclude $(NAME)

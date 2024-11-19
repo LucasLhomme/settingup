@@ -26,11 +26,3 @@ int my_getnbr(char const *str)
     }
     return result * neg;
 }
-
-int main(void)
-{
-    char *str = "52525"; 
-    int nbr = my_getnbr(str);
-    printf("%d\n", nbr);
-    return 0;
-}
