@@ -16,4 +16,3 @@ typedef struct flag_s {
     void (*flag_identifier)(va_list list);
 } flag_t;
 #endif
-
