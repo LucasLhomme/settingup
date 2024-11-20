@@ -16,13 +16,16 @@ int main(int argc, char *argv[])
 {
     char *filepath = argv[1];
     int x = 0;
+    int result = fs_open_file(filepath, x);
 
-    if (argc != 3)
+    if (argc != 3) {
         return 84;
+    }
     for (int i = 0; argv[2][i] != '\0'; i++) {
         x = x * 10 + (argv[2][i] - '0');
     }
-    if (fs_open_file(filepath, x) == -1)
+    if (result == -1) {
         return 84;
-    return fs_open_file(filepath, x);
+    }
+    return result;
 }

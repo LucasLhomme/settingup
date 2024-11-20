@@ -12,7 +12,6 @@
 
 int errorhand(int fd, char buffer, int x, int bytesread)
 {
-
     if (fd == -1) {
         return 84;
     }
@@ -24,7 +23,7 @@ int errorhand(int fd, char buffer, int x, int bytesread)
 
 int fs_open_file(char const *filepath, int x)
 {
-    char buffer[30000];
+    char buffer[50000];
     int fd = open(filepath, O_RDONLY);
     int bytesread = read(fd, buffer, x);
     int i = 0;
@@ -35,7 +34,7 @@ int fs_open_file(char const *filepath, int x)
         errorhand(fd, buffer[0], bytesread, x);
     for (; i < bytesread; i++) {
         if (buffer[i] == '\n')
-            buffer[i] = '\0';
+            (buffer[i] = '\0');
     }
     my_printf("%i\n", i);
     my_printf("%s", buffer);
