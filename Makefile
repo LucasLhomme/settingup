@@ -5,68 +5,40 @@
 ## MakeFile dans le fichier root
 ##
 
-pathdir=./src/lib
+NAME = setting_up
+DEBUG = -g
+CFLAGS += -g -Wall -Wextra -W -Iinclude -Ilib/include
 
-NAME = settingup_lib
-
-SRC = ./src/settingup.c \
-
-LIB = $(pathdir)/my_compute_power_rec.c\
-	$(pathdir)/my_find_prime_sup.c\
-	$(pathdir)/my_getnbr.c\
-	$(pathdir)/my_is_prime.c\
-	$(pathdir)/my_isneg.c\
-	$(pathdir)/my_put_nbr.c\
-	$(pathdir)/my_putchar.c\
-	$(pathdir)/my_putstr.c\
-	$(pathdir)/my_revstr.c\
-	$(pathdir)/my_showmem.c\
-	$(pathdir)/my_sort_int_array.c\
-	$(pathdir)/my_str_isalpha.c\
-	$(pathdir)/my_str_islower.c\
-	$(pathdir)/my_str_isnum.c\
-	$(pathdir)/my_str_isprintable.c\
-	$(pathdir)/my_str_isupper.c\
-	$(pathdir)/my_strcapitalize.c\
-	$(pathdir)/my_strcat.c\
-	$(pathdir)/my_strcmp.c\
-	$(pathdir)/my_strcpy.c\
-	$(pathdir)/my_strlen.c\
-	$(pathdir)/my_strncat.c\
-	$(pathdir)/my_strncpy.c\
-	$(pathdir)/my_strstr.c\
-	$(pathdir)/my_strupcase.c\
-	$(pathdir)/my_swap.c\
-	$(pathdir)/blanck.c\
-	$(pathdir)/flag_c.c\
-	$(pathdir)/flag_d.c\
-	$(pathdir)/flag_i.c\
-	$(pathdir)/flag_o.c\
-	$(pathdir)/flag_percent.c\
-	$(pathdir)/flag_s.c\
-	$(pathdir)/flag_x.c\
-	$(pathdir)/flag_x2.c\
-	$(pathdir)/my_printf.c
-
+SRC =	./src/main.c \
 
 OBJ  	=	 $(SRC:.c=.o)
 
-OBJ_LIB =  $(LIB:.c=.o)
 
 all: 	$(NAME)
+		$(MAKE) clean
 
-$(NAME):	$(OBJ) $(OBJ_LIB)
-		ar rcs $(NAME) $(OBJ)  $(OBJ_LIB)
-		gcc -o setting_up main.c -Iinclude settingup_lib
-clean:
-		rm -f $(OBJ) $(OBJ_LIB)
+$(NAME):	$(OBJ)
+		$(MAKE) -C lib all
+		gcc $(CFLAGS) -o $(NAME) $(OBJ) libmy.a
+
+clean || clear:
+		$(MAKE) -C lib clean
+		rm -f $(OBJ)
 
 fclean:
-		rm -f $(NAME) $(OBJ_LIB) $(OBJ)
+		rm -f $(NAME) debug $(OBJ) libmy.a
 
 re:
 		$(MAKE) fclean
 		$(MAKE) all
-debug:
 		$(MAKE) clean
-		gcc -g main.c -Iinclude settingup_lib
+
+debug: 	$(DEBUG)
+
+$(DEBUG):	$(OBJ)
+		$(MAKE) -C lib all
+		gcc -g $(CFLAGS) -o debug $(OBJ) libmy.a
+
+redebug:
+		$(MAKE) fclean
+		$(MAKE) debug
