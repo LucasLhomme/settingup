@@ -17,7 +17,7 @@
 int my_isneg(int nb);
 int my_put_nbr(int nb);
 void my_swap(int *a, int *b);
-int my_putstr(char const *str);
+void my_putstr(char const *str);
 int my_strlen(char const *str);
 int my_getnbr(char const *str);
 void my_sort_int_array(int *tab, int size);
@@ -53,4 +53,6 @@ void flag_x(va_list list);
 void blank(va_list list);
 int flag_detector(const char *format, int i, va_list list);
 int isalphanum(char c);
+int ispoint(char c);
+char **my_str_to_point_array(const char *str);
 #endif /*lib.h*/

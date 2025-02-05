@@ -7,7 +7,7 @@
 
 NAME = libmy.a
 
-CFLAGS += -Wall -Werror -Wextra -W -Iinclude
+CFLAGS += -g -Wall -Werror -Wextra -W -Iinclude
 
 
 LIB =	./check_strisnum.c\
@@ -42,7 +42,8 @@ LIB =	./check_strisnum.c\
 	./flag_s.c\
 	./flag_x.c\
 	./flag_x2.c\
-	./my_printf.c
+	./my_printf.c\
+	./my_str_to_point_array.c\
 
 
 OBJ_LIB  	=	 $(LIB:.c=.o)
