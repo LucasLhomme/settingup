@@ -14,5 +14,5 @@
 #ifndef MY_H
     #define MY_H
 int fs_open_file(char const *filepath);
-void fs_cat_500_bytes(char const *filepath, int x);
+int fs_cat_500_bytes(char const *filepath);
 #endif /*my.h*/

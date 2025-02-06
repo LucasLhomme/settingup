@@ -10,10 +10,7 @@
 
 int printing_tab(char **tab, int i)
 {
-    for (int n = 0; tab[i][n] != '\0'; n++){
-        if ((tab[i][n]) == '.')
-            (tab[i][n]) = 'x';
-    }
+    for (int n = 0; tab[i][n] != '\0'; n++);
     return 0;
 }
 
@@ -26,7 +23,7 @@ long get_file_size(const char *filename)
     return file_status.st_size;
 }
 
-void fs_cat_500_bytes(char const *filepath, int x)
+int fs_cat_500_bytes(char const *filepath)
 {
     long file_size = get_file_size(filepath);
     char buffer[file_size];
@@ -34,10 +31,12 @@ void fs_cat_500_bytes(char const *filepath, int x)
     char **tab;
 
     fd = open(filepath, O_RDONLY);
-    read(fd, buffer, x);
+    if (fd == -1)
+        return 84;
+    read(fd, buffer, file_size);
     tab = my_str_to_point_array(buffer);
     if (file_size < 0)
-        return;
+        return 84;
     for (int i = 0; tab[i] != NULL; i++)
         printing_tab(tab, i);
     for (int k = 0; tab[k] != NULL; k++) {
@@ -45,13 +44,12 @@ void fs_cat_500_bytes(char const *filepath, int x)
         my_putchar('\n');
     }
     close(fd);
-    return;
+    return 0;
 }
 
 int main(int argc, char *argv[])
 {
-    if (argc <= 1 || argv[2] == NULL || my_getnbr(argv[2]) <= 0)
+    if (argc <= 1 || argv[1] == NULL)
         return 84;
-    fs_cat_500_bytes(argv[1], my_getnbr(argv[2]));
-    return 0;
+    return fs_cat_500_bytes(argv[1]);
 }
